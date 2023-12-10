@@ -1,4 +1,12 @@
 #!/usr/bin/env python
+"""
+Description of your script/module.
+
+This module is responsible for setting up the Django environment and executing
+management commands.
+
+Author: Rakshat Jayakumar
+"""
 import os
 import sys
 
