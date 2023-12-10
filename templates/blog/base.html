@@ -1,0 +1,157 @@
+<!-- blog/templates/blog/base.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Picture Blog</title>
+</head>
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+        box-sizing: content-box;
+    }
+    .navbar {
+        height: 10%;
+        width: 100%;
+        color: #fff;
+        top: 0;
+        position:fixed;
+        right: 0;
+        left: 0;
+        z-index: 10;
+        box-shadow: 0 4px 12px 0 rgba(0, 0, 0, .05);
+        background-color: #fff;
+    }
+    .main{
+        height: 723px;
+        width: 100%;
+        margin-top: 75px;
+        background-color: whitesmoke;
+        display:flex;
+         justify-content:center;
+    align-items:center;
+        
+    }
+  .navbarlist{
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+  }
+  .navli{
+     display:flex;
+    justify-content:space-around;
+    align-items:center;
+    padding: 17px 17px 28px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: .3px;
+    border-bottom: none;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  a{
+    text-decoration:none;
+    color: #282c3f;
+  }
+  .authappform{
+      height:70%;
+      width:50%;
+      background-color: #fff;
+      border-radius:15px;
+      align-items:center;
+      box-shadow: 0 4px 12px 0 rgba(0, 0, 0, .05);
+  }
+  .authappform>h2{
+      text-align: center;
+      text-transform: uppercase;
+  }
+  .authappform>a{
+      margin-left:30px;
+  }
+  .helptext{
+      display: none;
+  }
+  .authappform>ul{
+      text-transform:uppercase;
+  }
+  .loginpage>h2{
+      margin-top: 80px;
+      margin-bottom: 80px;
+  }
+  label{
+      text-transform: uppercase;
+      margin-left:15px;
+  }
+  input{
+      width:90%;
+      height:40px;
+      margin-left:20px;
+  }
+  button {
+  background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-left:25px;
+}
+.post-container {
+    margin-top: 635px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height:100%;
+    width:100%;
+  }
+  .post {
+      align-items: center;
+    height:100%;
+    width: 25%; 
+    margin-bottom: 20px; 
+    box-sizing: border-box;
+  }
+ img {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+}
+
+img:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+  @media (max-width: 768px) {
+    .post {
+      width: 48%; 
+    }
+  }
+  .para{
+      text-align-last: center;
+  }
+</style>
+<body>
+    <nav class="navbar">
+        <ul class="navbarlist">
+            <!-- Your existing navigation items -->
+            <li class="navli"><a href="{% url 'post_list' %}">MyPictureBlog</a></li>
+
+             <!-- Add login and register links -->
+            {% if user.is_authenticated %}
+                <li class="navli"><a href="{% url 'post_new' %}">Add New Post</a></li>
+                <li class="navli"><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li class="navli"><a href="{% url 'login' %}">Login</a></li>
+                <li class="navli"><a href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <div class="main">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

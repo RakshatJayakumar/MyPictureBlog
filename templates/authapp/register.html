@@ -1,0 +1,14 @@
+<!-- blog/templates/registration/register.html -->
+{% extends 'blog/base.html' %}
+
+{% block content %}
+  <div class="authappform">
+    <h2>Register</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Sign up</button>
+  </form>
+  <a href="{% url 'login' %}">Already have an account? Login here</a>
+  </div>
+{% endblock %}
