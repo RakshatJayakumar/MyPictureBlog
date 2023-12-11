@@ -1,13 +1,15 @@
 # blog/views.py
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
-from .forms import PostForm  # Create a forms.py file in the same directory
+from .forms import PostForm  
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
+from django.views.decorators.http import require_safe
 
 class SidebarView(TemplateView):
     template_name = "main.html"
-
+    
+@require_safe
 @login_required
 def post_list(request):
     posts = Post.objects.filter(user=request.user)
